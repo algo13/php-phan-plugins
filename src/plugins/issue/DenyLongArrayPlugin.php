@@ -6,7 +6,7 @@ use Phan\Plugin\PluginImplementation;
 use Phan\AST\AnalysisVisitor;
 use Phan\Language\Context;
 
-// PhanPluginNonShortArray
+// PhanPluginDenyLongArray
 return new class extends PluginImplementation
 {
     public function analyzeNode(CodeBase $code_base, Context $context, Node $node, Node $parent_node = null)
@@ -26,7 +26,7 @@ return new class extends PluginImplementation
                 // [] = BINARY_MUL
                 // array() = EXEC_INCLUDE
                 if ($node->flags === \ast\flags\EXEC_INCLUDE) {
-                    $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginNonShortArray', 'array() to []');
+                    $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginDenyLongArray', 'array() to []');
                 }
             }
             /** @var Plugin */

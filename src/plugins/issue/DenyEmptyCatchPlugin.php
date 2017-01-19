@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
 use ast\Node;
-use Phan\{CodeBase, Plugin, Issue};
+use Phan\{CodeBase, Plugin};
 use Phan\Plugin\PluginImplementation;
 use Phan\AST\AnalysisVisitor;
 use Phan\Language\Context;
 
-// PhanPluginEmptyCatch
+// PhanPluginDenyEmptyCatch
 return new class extends PluginImplementation
 {
     public function analyzeNode(CodeBase $code_base, Context $context, Node $node, Node $parent_node = null)
@@ -24,7 +24,7 @@ return new class extends PluginImplementation
             public function visitCatch(Node $node)
             {
                 if (!$node->children['stmts']->children) {
-                    $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginEmptyCatch', 'try{f();}catch(Error $e){}');
+                    $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginDenyEmptyCatch', 'try{f();}catch(Error $e){}');
                 }
             }
             /** @var Plugin */

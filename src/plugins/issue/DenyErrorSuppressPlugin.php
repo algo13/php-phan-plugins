@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
 use ast\Node;
-use Phan\{CodeBase, Plugin, Issue};
+use Phan\{CodeBase, Plugin};
 use Phan\Plugin\PluginImplementation;
 use Phan\AST\AnalysisVisitor;
 use Phan\Language\Context;
 
-// PhanPluginErrorSuppress
+// PhanPluginDenyErrorSuppress
 return new class extends PluginImplementation
 {
     public function analyzeNode(CodeBase $code_base, Context $context, Node $node, Node $parent_node = null)
@@ -24,7 +24,7 @@ return new class extends PluginImplementation
             public function visitUnaryOp(Node $node)
             {
                 if ($node->flags & \ast\flags\UNARY_SILENCE) {
-                    $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginErrorSuppress', "e.g. @file('test.txt');");
+                    $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginDenyErrorSuppress', "e.g. @file('test.txt');");
                 }
             }
             /** @var Plugin */
