@@ -15,13 +15,13 @@ class PhanPluginVisitor extends AnalysisVisitor
     public function visit(Node $node)
     {
     }
-    /** @param Node|string|null $node */
+    /** @param null|string|Node $node */
     protected function createContextNode($node) : ContextNode
     {
         return (new ContextNode($this->code_base, $this->context, $node));
     }
-    /** @param Node|string|null $node */
-    protected function createUnionTypefromNode($node, bool $should_catch_issue_exception = true) : UnionType
+    /** @param null|string|Node $node */
+    protected function createUnionTypeFromNode($node, bool $should_catch_issue_exception = true) : UnionType
     {
         return UnionType::fromNode($this->context, $this->code_base, $node, $should_catch_issue_exception);
     }

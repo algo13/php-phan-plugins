@@ -25,7 +25,7 @@ return new class extends PluginImplementation
             public function visitVar(Node $node)
             {
                 if ($node->children['name'] === 'GLOBAL') {
-                    $this->emitIssueByPlugin('Variable', '$GLOBAL Variable are not allowed.');
+                    $this->emitIssueByPlugin('Variable', '$GLOBAL Variable is not allowed.');
                 }
             }
             public function visitGlobal(Node $node)

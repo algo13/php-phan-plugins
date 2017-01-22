@@ -23,7 +23,7 @@ return new class extends PluginImplementation
             }
             public function visitGoto(Node $node)
             {
-                $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginDenyGoto', 'goto operator are not allowed.');
+                $this->plugin->emitIssue($this->code_base, $this->context, 'PhanPluginDenyGoto', 'goto operator is not allowed.');
             }
             /** @var Plugin */
             private $plugin;
